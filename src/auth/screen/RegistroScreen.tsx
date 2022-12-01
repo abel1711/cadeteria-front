@@ -19,14 +19,14 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import SignpostIcon from '@mui/icons-material/Signpost';
 import PinIcon from '@mui/icons-material/Pin';
 import PlaceIcon from '@mui/icons-material/Place';
-import { Copyright } from '../../components/Copyright';
+import PhoneIcon from '@mui/icons-material/Phone';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+
+import { Copyright } from '../../components/Copyright';
 import { FormRegistroValues } from '../../interfaces/interface';
-import PhoneIcon from '@mui/icons-material/Phone';
-import { registro } from '../helpers/registro';
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import { startRegisterUsuario } from '../../redux/slices/auth';
 
