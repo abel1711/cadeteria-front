@@ -19,14 +19,18 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import { Copyright } from '../../components/Copyright';
-import { FormLoginValues } from '../interfaces/interface';
-import { login } from '../helpers/login';
+import { FormLoginValues } from '../../interfaces/interface';
 import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { startloginUsuario } from '../../redux/slices/auth/authThunks';
 
 
 export const LoginScreen = () => {
 
 	const theme = useTheme();
+
+	const isLoading = useAppSelector( state => state.auth.isLoading);
+	const dispatch = useAppDispatch();
 
 	const [showPassword, setShowPassword] = useState(false)
 
@@ -54,7 +58,7 @@ export const LoginScreen = () => {
 						password: '',
 					}}
 					onSubmit={async (values: FormLoginValues, { resetForm }) => {
-						const user = await login(values);
+						dispatch(startloginUsuario(values));
 						resetForm();
 					}}
 					validationSchema={Yup.object({
@@ -132,6 +136,7 @@ export const LoginScreen = () => {
 									fullWidth
 									variant="contained"
 									sx={{ mt: 3, mb: 2 }}
+									disabled={isLoading}
 								>
 									Ingresar
 								</Button>
