@@ -25,7 +25,7 @@ import { useTheme } from '@mui/material/styles';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-import { Copyright } from '../../components/Copyright';
+import { Copyright, ShowErrors } from '../../components';
 import { FormRegistroValues } from '../../interfaces/interface';
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import { startRegisterUsuario } from '../../redux/slices/auth';
@@ -328,6 +328,7 @@ export const RegistroScreen = () => {
                                 >
                                     Enviar
                                 </Button>
+                                <ShowErrors />
                                 <Grid container justifyContent="flex-end">
                                     <Grid item>
                                         <Link to="/login" style={{
