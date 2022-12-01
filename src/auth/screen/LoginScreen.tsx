@@ -22,7 +22,7 @@ import * as Yup from 'yup';
 
 import { Link } from 'react-router-dom';
 
-import { Copyright } from '../../components/Copyright';
+import { Copyright, ShowErrors } from '../../components';
 import { FormLoginValues } from '../../interfaces/interface';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { startloginUsuario } from '../../redux/slices/auth/authThunks';
@@ -32,7 +32,7 @@ export const LoginScreen = () => {
 
 	const theme = useTheme();
 
-	const isLoading = useAppSelector( state => state.auth.isLoading);
+	const { isLoading } = useAppSelector( state => state.auth);
 	const dispatch = useAppDispatch();
 
 	const [showPassword, setShowPassword] = useState(false)
@@ -143,6 +143,7 @@ export const LoginScreen = () => {
 								>
 									Ingresar
 								</Button>
+								<ShowErrors />
 								<Grid container>
 									<Grid item xs>
 										<Link to="#" style={{
