@@ -24,24 +24,21 @@ import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { FormRegistroValues } from '../interfaces/interface';
+import { FormRegistroValues } from '../../interfaces/interface';
 import PhoneIcon from '@mui/icons-material/Phone';
 import { registro } from '../helpers/registro';
+import { useAppSelector, useAppDispatch } from '../../redux/hooks';
+import { startRegisterUsuario } from '../../redux/slices/auth';
 
 
 export const RegistroScreen = () => {
 
     const theme = useTheme();
+
     const [showPassword, setShowPassword] = useState(false);
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
-    };
+    const dispatch = useAppDispatch();
+    const isLoading = useAppSelector(state => state.auth.isLoading);
 
     return (
         <Container component="main" maxWidth="xs" >
@@ -87,9 +84,9 @@ export const RegistroScreen = () => {
                             ciudad: Yup.string().required('Por favor ingresa la ciudad')
                         })
                     })}
-                    onSubmit={ async (values: FormRegistroValues) => {
-                        const nuevoUsuario = await registro(values);
-                        alert(JSON.stringify(nuevoUsuario, null, 4))
+                    onSubmit={async (values: FormRegistroValues, { resetForm }) => {
+                        dispatch(startRegisterUsuario(values));
+                        resetForm()
                     }}
                 >
                     {
@@ -327,6 +324,7 @@ export const RegistroScreen = () => {
                                     fullWidth
                                     variant="contained"
                                     sx={{ mt: 3, mb: 2 }}
+                                    disabled={isLoading}
                                 >
                                     Enviar
                                 </Button>
