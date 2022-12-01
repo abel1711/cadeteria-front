@@ -1,5 +1,4 @@
-import { AxiosError } from 'axios';
-import { setUsuario, startLoadingUsuario } from "./authSlice"
+import { setErrors, setUsuario, startLoadingUsuario } from "./authSlice"
 import { FormLoginValues, FormRegistroValues } from "../../../interfaces";
 import { store } from "../../store";
 import { authAPI, usuariosAPI } from '../../../api';
@@ -11,15 +10,16 @@ export const startloginUsuario = ( formValues: FormLoginValues )=>{
 
         dispatch( startLoadingUsuario() );
 
-        //realizar la peticion http
         try {
 
             const {data} = await authAPI.post('/login', formValues);
 
             dispatch( setUsuario(data))
 
-        } catch (error: any) {
-            console.log(error.response.data)
+        } catch (errors: any) {
+            console.log(errors.response.data.errors)
+            dispatch(setErrors(errors.response.data.errors[0]))
+
         }
 
 
@@ -36,8 +36,9 @@ export const startRegisterUsuario = ( formValues: FormRegistroValues)=>{
 
             dispatch( setUsuario(data))
 
-        } catch (error: any) {
-            console.log(error.response.data)
+        } catch (errors: any) {
+            console.log(errors.response.data.errors)
+            dispatch(setErrors(errors.response.data.errors[0]))
         }
     }
 }
