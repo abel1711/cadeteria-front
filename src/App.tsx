@@ -4,6 +4,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { theme } from "./config/MUIThemeConfig";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import { ModalLoading } from "./components";
 
 
 
@@ -14,6 +15,7 @@ function App() {
     <Provider store={ store }>
       <ThemeProvider theme={theme}>
         <RouterProvider router={router} />
+        <ModalLoading />
       </ThemeProvider>
     </Provider>
   )
