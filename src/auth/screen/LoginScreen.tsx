@@ -32,7 +32,7 @@ export const LoginScreen = () => {
 
 	const theme = useTheme();
 
-	const { isLoading } = useAppSelector( state => state.loading);
+	const { isLoading } = useAppSelector(state => state.loading);
 	const dispatch = useAppDispatch();
 
 	const [showPassword, setShowPassword] = useState(false)
@@ -83,9 +83,7 @@ export const LoginScreen = () => {
 									InputProps={{
 										startAdornment: (
 											<InputAdornment position='start' >
-												<IconButton>
-													<PhoneIcon />
-												</IconButton>
+												<PhoneIcon />
 											</InputAdornment>
 										)
 									}}
@@ -114,6 +112,7 @@ export const LoginScreen = () => {
 											<InputAdornment position='start' >
 												<IconButton
 													onClick={() => setShowPassword(prev => !prev)}
+													style={{ padding: 0}}
 												>
 													{
 														showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />
