@@ -38,7 +38,7 @@ export const RegistroScreen = () => {
     const [showPassword, setShowPassword] = useState(false);
 
     const dispatch = useAppDispatch();
-    const isLoading = useAppSelector(state => state.auth.isLoading);
+    const isLoading = useAppSelector(state => state.loading.isLoading);
 
     return (
         <Container component="main" maxWidth="xs" >

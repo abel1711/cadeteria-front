@@ -32,7 +32,7 @@ export const LoginScreen = () => {
 
 	const theme = useTheme();
 
-	const { isLoading } = useAppSelector( state => state.auth);
+	const { isLoading } = useAppSelector( state => state.loading);
 	const dispatch = useAppDispatch();
 
 	const [showPassword, setShowPassword] = useState(false)
