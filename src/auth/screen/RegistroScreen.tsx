@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
     Avatar,
     Box,
@@ -10,6 +10,8 @@ import {
     TextField,
     Typography,
     IconButton,
+    MenuItem,
+    Tooltip,
 } from '@mui/material';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -29,6 +31,7 @@ import { Copyright, ShowErrors } from '../../components';
 import { FormRegistroValues } from '../../interfaces/interface';
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import { startRegisterUsuario } from '../../redux/slices/auth';
+import { dataPageAPI } from '../../api/dataPageAPI';
 
 
 export const RegistroScreen = () => {
@@ -37,8 +40,23 @@ export const RegistroScreen = () => {
 
     const [showPassword, setShowPassword] = useState(false);
 
+    const [ciudades, setCiudades] = useState([
+        'Córdoba Capital, Córdoba, Argentina'
+    ]);
+
     const dispatch = useAppDispatch();
+
     const isLoading = useAppSelector(state => state.loading.isLoading);
+
+    const getCiudades = async () => {
+        const { data } = await dataPageAPI.get('ciudades');
+        setCiudades(data.ciudades)
+    }
+
+    useEffect(() => {
+        getCiudades()
+    }, [])
+
 
     return (
         <Container component="main" maxWidth="xs" >
@@ -103,9 +121,7 @@ export const RegistroScreen = () => {
                                             InputProps={{
                                                 startAdornment: (
                                                     <InputAdornment position='start' >
-                                                        <IconButton>
-                                                            <CreateIcon />
-                                                        </IconButton>
+                                                        <CreateIcon />
                                                     </InputAdornment>
                                                 )
                                             }}
@@ -134,9 +150,7 @@ export const RegistroScreen = () => {
                                             InputProps={{
                                                 startAdornment: (
                                                     <InputAdornment position='start' >
-                                                        <IconButton>
-                                                            <EmailIcon />
-                                                        </IconButton>
+                                                        <EmailIcon />
                                                     </InputAdornment>
                                                 )
                                             }}
@@ -163,9 +177,7 @@ export const RegistroScreen = () => {
                                             InputProps={{
                                                 startAdornment: (
                                                     <InputAdornment position='start' >
-                                                        <IconButton>
-                                                            <PhoneIcon />
-                                                        </IconButton>
+                                                        <PhoneIcon />
                                                     </InputAdornment>
                                                 )
                                             }}
@@ -195,6 +207,7 @@ export const RegistroScreen = () => {
                                                     <InputAdornment position='start' >
                                                         <IconButton
                                                             onClick={() => setShowPassword(prev => !prev)}
+                                                            style={{ padding: 0 }}
                                                         >
                                                             {
                                                                 showPassword
@@ -239,9 +252,7 @@ export const RegistroScreen = () => {
                                             InputProps={{
                                                 startAdornment: (
                                                     <InputAdornment position='start' >
-                                                        <IconButton>
-                                                            <SignpostIcon />
-                                                        </IconButton>
+                                                        <SignpostIcon />
                                                     </InputAdornment>
                                                 )
                                             }}
@@ -269,9 +280,7 @@ export const RegistroScreen = () => {
                                             InputProps={{
                                                 startAdornment: (
                                                     <InputAdornment position='start' >
-                                                        <IconButton>
-                                                            <PinIcon />
-                                                        </IconButton>
+                                                        <PinIcon />
                                                     </InputAdornment>
                                                 )
                                             }}
@@ -289,27 +298,35 @@ export const RegistroScreen = () => {
                                         }
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <TextField
-                                            required
-                                            fullWidth
-                                            label="Ciudad"
-                                            type="text"
-                                            id="ciudad"
-                                            autoComplete="text"
-                                            InputProps={{
-                                                startAdornment: (
-                                                    <InputAdornment position='start' >
-                                                        <IconButton>
+                                        <Tooltip title='Ciudades donde trabajamos!' placement='right'>
+
+                                            <TextField
+                                                required
+                                                fullWidth
+                                                select
+                                                label="Ciudad"
+                                                type="text"
+                                                id="ciudad"
+                                                autoComplete="text"
+                                                InputProps={{
+                                                    startAdornment: (
+                                                        <InputAdornment position='start' >
                                                             <PlaceIcon />
-                                                        </IconButton>
-                                                    </InputAdornment>
-                                                )
-                                            }}
-                                            error={!!touched.direccion?.ciudad && !!errors.direccion?.ciudad}
-                                            {
-                                            ...getFieldProps('direccion.ciudad')
-                                            }
-                                        />
+                                                        </InputAdornment>
+                                                    )
+                                                }}
+                                                error={!!touched.direccion?.ciudad && !!errors.direccion?.ciudad}
+                                                {
+                                                ...getFieldProps('direccion.ciudad')
+                                                }
+                                            >
+                                                {
+                                                    ciudades.sort().map(ciudad => (
+                                                        <MenuItem key={ciudad} value={ciudad}>{ciudad}</MenuItem>
+                                                    ))
+                                                }
+                                            </TextField>
+                                        </Tooltip>
                                         {
                                             (touched.direccion?.ciudad && errors.direccion?.ciudad) && (
                                                 <Typography component="p" variant="error1" mt={1}>
