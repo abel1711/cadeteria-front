@@ -5,7 +5,6 @@ import { RootState } from '../../store';
 
 
 const initialState: RespDataPage = {
-    _id: '',
     about: '',
     mision: '',
     objetivos: '',
