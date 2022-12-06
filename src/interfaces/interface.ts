@@ -63,7 +63,7 @@ export interface ErrorAuth {
 // resp al tipado cuando obtenemos la informacion de la cadeteria
 
 export interface RespDataPage {
-	_id:       string;
+	_id?:       string;
 	about:     string;
 	mision:    string;
 	objetivos: string;
