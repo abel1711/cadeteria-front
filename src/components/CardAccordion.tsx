@@ -6,7 +6,7 @@ interface Props {
     text: string;
 }
 
-export const Card = ({ titulo, text }: Props) => {
+export const CardAccordion = ({ titulo, text }: Props) => {
     return (
         <Accordion>
             <AccordionSummary
