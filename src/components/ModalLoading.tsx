@@ -39,11 +39,12 @@ export const ModalLoading = () => {
             >
                 <Fade in={show}>
                     <Box sx={style}>
-                        <Typography id="transition-modal-title" variant="h6" component="h2" style={{
-                            color: 'black'
-                        }}>
+                        <Typography id="transition-modal-title" variant="h6" component="h2" sx={{
+                            color: 'inherit'
+                        }}
+                        >
                             Cargando..
-                            <LinearProgress/>
+                            <LinearProgress />
                         </Typography>
                     </Box>
                 </Fade>
