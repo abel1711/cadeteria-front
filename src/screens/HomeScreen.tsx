@@ -17,10 +17,7 @@ export const HomeScreen = () => {
   return (
     <>
       <NavbarHome />
-      <Container component={'main'} maxWidth='lg' style={{
-        // backgroundColor: 'red'
-      }}>
-        <CssBaseline />
+      <Container component={'main'} maxWidth='lg' >
 
         <FAQ data={data}/>
 

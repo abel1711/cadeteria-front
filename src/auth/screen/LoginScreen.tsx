@@ -39,7 +39,6 @@ export const LoginScreen = () => {
 
 	return (
 		<Container component="main" maxWidth="xs">
-			<CssBaseline />
 			<Box
 				sx={{
 					display: 'flex',

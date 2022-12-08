@@ -4,7 +4,6 @@ import {
     Box,
     Button,
     Container,
-    CssBaseline,
     Grid,
     InputAdornment,
     TextField,
@@ -22,8 +21,9 @@ import SignpostIcon from '@mui/icons-material/Signpost';
 import PinIcon from '@mui/icons-material/Pin';
 import PlaceIcon from '@mui/icons-material/Place';
 import PhoneIcon from '@mui/icons-material/Phone';
-import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
+
+import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -40,9 +40,7 @@ export const RegistroScreen = () => {
 
     const [showPassword, setShowPassword] = useState(false);
 
-    const [ciudades, setCiudades] = useState([
-        'Córdoba Capital, Córdoba, Argentina'
-    ]);
+    const [ciudades, setCiudades] = useState([]);
 
     const dispatch = useAppDispatch();
 
@@ -60,7 +58,6 @@ export const RegistroScreen = () => {
 
     return (
         <Container component="main" maxWidth="xs" >
-            <CssBaseline />
             <Box
                 sx={{
                     display: 'flex',
