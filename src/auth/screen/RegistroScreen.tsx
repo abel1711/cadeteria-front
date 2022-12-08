@@ -133,7 +133,9 @@ export const RegistroScreen = () => {
                                         />
                                         {
                                             (touched.nombre && errors.nombre) && (
-                                                <Typography component="p" variant="error1" mt={1}>
+                                                <Typography component="p" sx={{
+                                                    color: 'error.main'
+                                                }} mt={1}>
                                                     {errors.nombre}
                                                 </Typography>
                                             )
@@ -161,7 +163,9 @@ export const RegistroScreen = () => {
                                         />
                                         {
                                             (touched.email && errors.email) && (
-                                                <Typography component="p" variant="error1" mt={1}>
+                                                <Typography component="p" sx={{
+                                                    color: 'error.main'
+                                                }} mt={1}>
                                                     {errors.email}
                                                 </Typography>
                                             )
@@ -188,7 +192,9 @@ export const RegistroScreen = () => {
                                         />
                                         {
                                             (touched.telefono && errors.telefono) && (
-                                                <Typography component="p" variant="error1" mt={1}>
+                                                <Typography component="p" sx={{
+                                                    color: 'error.main'
+                                                }} mt={1}>
                                                     {errors.telefono}
                                                 </Typography>
                                             )
@@ -229,7 +235,9 @@ export const RegistroScreen = () => {
 
                                         {
                                             (touched.password && errors.password) && (
-                                                <Typography component="p" variant="error1" mt={1}>
+                                                <Typography component="p" sx={{
+                                                    color: 'error.main'
+                                                }} mt={1}>
                                                     {errors.password}
                                                 </Typography>
                                             )
@@ -263,7 +271,9 @@ export const RegistroScreen = () => {
                                         />
                                         {
                                             (touched.direccion?.calle && errors.direccion?.calle) && (
-                                                <Typography component="p" variant="error1" mt={1}>
+                                                <Typography component="p" sx={{
+                                                    color: 'error.main'
+                                                }} mt={1}>
                                                     {errors.direccion?.calle}
                                                 </Typography>
                                             )
@@ -291,7 +301,9 @@ export const RegistroScreen = () => {
                                         />
                                         {
                                             (touched.direccion?.numero && errors.direccion?.numero) && (
-                                                <Typography component="p" variant="error1" mt={1}>
+                                                <Typography component="p" sx={{
+                                                    color: 'error.main'
+                                                }} mt={1}>
                                                     {errors.direccion?.numero}
                                                 </Typography>
                                             )
@@ -329,7 +341,9 @@ export const RegistroScreen = () => {
                                         </Tooltip>
                                         {
                                             (touched.direccion?.ciudad && errors.direccion?.ciudad) && (
-                                                <Typography component="p" variant="error1" mt={1}>
+                                                <Typography component="p" sx={{
+                                                    color: 'error.main'
+                                                }} mt={1}>
                                                     {errors.direccion?.ciudad}
                                                 </Typography>
                                             )
@@ -350,6 +364,7 @@ export const RegistroScreen = () => {
                                     <Grid item>
                                         <Link to="/login" style={{
                                             textDecoration: 'none',
+                                            color: 'inherit',
                                             ...theme.typography.body2
                                         }}>
                                             ¿Ya tienes una cuenta? Ingresa aquí

@@ -20,12 +20,7 @@ declare module '@mui/material/styles' {
   
   export const theme = createTheme({
     palette:{
-      mode: 'light'
+      mode: 'dark'
     },
-    typography:{
-      error1:{
-        color: '#d32f2f'
-      }
-    }
   });
   

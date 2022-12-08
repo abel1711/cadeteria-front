@@ -94,7 +94,9 @@ export const LoginScreen = () => {
 								/>
 								{
 									(touched.telefono && errors.telefono) && (
-										<Typography component="p" variant="error1">
+										<Typography component="p"  sx={{
+											color: 'error.main'
+										}}>
 											{errors.telefono}
 										</Typography>
 									)
@@ -128,7 +130,9 @@ export const LoginScreen = () => {
 								/>
 								{
 									(touched.password && errors.password) && (
-										<Typography component="p" variant="error1">
+										<Typography component="p"  sx={{
+											color: 'error.main'
+										}}>
 											{errors.password}
 										</Typography>
 									)
@@ -147,6 +151,7 @@ export const LoginScreen = () => {
 									<Grid item xs>
 										<Link to="#" style={{
 											textDecoration: 'none',
+											color: 'inherit',
 											...theme.typography.body2
 										}}>
 											¿Olvidaste tu contraseña?
@@ -155,7 +160,9 @@ export const LoginScreen = () => {
 									<Grid item>
 										<Link to="/registro" style={{
 											textDecoration: 'none',
+											color: 'inherit',
 											...theme.typography.body2
+
 										}}>
 											{"¿No tienes una cuenta? Registrate"}
 										</Link>
