@@ -21,32 +21,28 @@ export const CardAccordionServicios = ({ servicios }: Props) => {
                 >Nuestros Servicios</Typography>
             </AccordionSummary>
             <AccordionDetails>
-                <List
-                    sx={{ width: '100%', bgcolor: 'background.paper' }}
-                    component="span"
-                    aria-labelledby="nested-list-subheader"
-                >
-                    {
-                        servicios.map(({ titulo, texto }) => (
-                            <ListItemText
-                                key={titulo}
-                                primary={titulo}
-                                secondary={
-                                    titulo === 'Tramites'
-                                        ? <List
-                                            sx={{ width: '100%', bgcolor: 'background.paper' }}
-                                            component="span"
-                                            aria-labelledby="nested-list-subheader"
-                                            >{texto.split(',').map(item => (
-                                                <ListItemText secondary={item} key={item} />
-                                            ))}
-                                            </List>
-                                        : texto} />
+                {
+                    servicios.map(({ titulo, texto }) => (
 
-                        ))
-                    }
+                        <Accordion key={titulo}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel1a-content"
+                                id="panel1a-header"
+                            >
+                                <Typography
+                                    variant="body1" component="span"
+                                >{titulo}</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography
+                                    variant="subtitle2" component="p"
+                                >{texto}</Typography>
+                            </AccordionDetails>
+                        </Accordion>
+                    ))
+                }
 
-                </List>
             </AccordionDetails>
         </Accordion>
     )
