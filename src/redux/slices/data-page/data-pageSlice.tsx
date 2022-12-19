@@ -13,6 +13,9 @@ const initialState: RespDataPage = {
         texto: ''
     }],
     ciudades: [''],
+    descripcionPACK: '',
+    descriptionMOTOPACK: ''
+
 }
 
 export const dataPageSlice = createSlice({
@@ -25,6 +28,8 @@ export const dataPageSlice = createSlice({
             state.ciudades = payload.ciudades;
             state.objetivos = payload.objetivos;
             state.servicios = payload.servicios;
+            state.descripcionPACK = payload.descripcionPACK;
+            state.descriptionMOTOPACK = payload.descriptionMOTOPACK;
         }
     },
 })
