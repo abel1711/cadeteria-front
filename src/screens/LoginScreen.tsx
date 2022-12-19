@@ -158,7 +158,7 @@ export const LoginScreen = () => {
 										</Link>
 									</Grid>
 									<Grid item>
-										<Link to="/out/registro" style={{
+										<Link to="/registro" style={{
 											textDecoration: 'none',
 											color: 'inherit',
 											...theme.typography.body2

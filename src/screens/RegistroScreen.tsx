@@ -359,7 +359,7 @@ export const RegistroScreen = () => {
                                 <ShowErrors />
                                 <Grid container justifyContent="flex-end">
                                     <Grid item>
-                                        <Link to="/out/login" style={{
+                                        <Link to="/login" style={{
                                             textDecoration: 'none',
                                             color: 'inherit',
                                             ...theme.typography.body2
