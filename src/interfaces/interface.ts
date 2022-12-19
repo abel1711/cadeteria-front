@@ -63,13 +63,15 @@ export interface ErrorAuth {
 // resp al tipado cuando obtenemos la informacion de la cadeteria
 
 export interface RespDataPage {
-	_id?:       string;
-	about:     string;
-	mision:    string;
-	objetivos: string;
-	servicios: Servicio[];
-	ciudades:  string[];
-	__v?:       number;
+	_id?:                    string;
+	about:                  string;
+	mision:                 string;
+	objetivos:              string;
+	servicios:              Servicio[];
+	ciudades:               string[];
+	__v?:                    number;
+	descripcionPACK:     string;
+	descriptionMOTOPACK: string;
 }
 
 export interface Servicio {
@@ -77,3 +79,9 @@ export interface Servicio {
 	texto:  string;
 	_id?:    string;
 }
+
+
+
+
+
+
