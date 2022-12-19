@@ -24,7 +24,7 @@ export const NavbarHome = () => {
                     </Typography>
 
                     <Button color="inherit">
-                        <Link to="/out/login" style={{
+                        <Link to="/login" style={{
                             textDecoration: 'none',
                             color: 'inherit'
                         }}>
@@ -33,7 +33,7 @@ export const NavbarHome = () => {
                     </Button>
 
                     <Button color="inherit">
-                    <Link to="/out/registro" style={{
+                    <Link to="/registro" style={{
                             textDecoration: 'none',
                             color:'inherit'
                         }}>
