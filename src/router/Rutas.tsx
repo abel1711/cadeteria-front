@@ -28,7 +28,7 @@ export const Rutas = () => {
     return (
         <Routes>
 
-            <Route path="out/*" element={
+            <Route path="/*" element={
                 <RutasPublicas>
                     <Routes>
                         <Route path="/login" element={< LoginScreen />} />
@@ -44,7 +44,7 @@ export const Rutas = () => {
                 <RutasPrivadas>
                     <Routes>
                         <Route
-                            path="/usuario"
+                            path="/usuario/*"
                             element={handleUser()}
                         />
                     </Routes>
