@@ -5,6 +5,7 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import OutputIcon from '@mui/icons-material/Output';
+import { Link } from 'react-router-dom';
 
 export const DrawerCliente = () => {
 
@@ -33,47 +34,66 @@ export const DrawerCliente = () => {
                 }}
             >
                 <Box
+                role='presentation'
                     sx={{
                         width: 300,
-                        padding: 1
+                        padding: 1,
+                        paddingTop: 5,
                     }}
+                    onClick={() => setShowDrawer(false)}
+                    
                 >
                     <List>
 
 
                         <ListItem disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    <AddBoxIcon fontSize='large' />
-                                </ListItemIcon>
-                                <ListItemText primary='Nueva orden' />
-                            </ListItemButton>
+                            <Link
+                                to={'nueva-orden'}
+                                style={{ color: 'inherit', textDecoration: 'none', display: 'flex', width: '100%' }}
+                            >
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        <AddBoxIcon fontSize='large' />
+                                    </ListItemIcon>
+                                    <ListItemText primary='Nueva orden' />
+                                </ListItemButton>
+                            </Link>
                         </ListItem>
                         <ListItem disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    <ViewListIcon fontSize='large'/>
-                                </ListItemIcon>
-                                <ListItemText primary='Mis ordenes' />
-                            </ListItemButton>
+                            <Link
+                                to={'mis-ordenes'}
+                                style={{ color: 'inherit', textDecoration: 'none', display: 'flex', width: '100%' }}
+                            >
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        <ViewListIcon fontSize='large' />
+                                    </ListItemIcon>
+                                    <ListItemText primary='Mis ordenes' />
+                                </ListItemButton>
+                            </Link>
                         </ListItem>
                         <Divider />
                         <ListItem disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    <AccountBoxIcon fontSize='large'/>
-                                </ListItemIcon>
-                                <ListItemText primary='Mi perfíl' />
-                            </ListItemButton>
+                            <Link
+                                to={'mi-perfil'}
+                                style={{ color: 'inherit', textDecoration: 'none', display: 'flex', width: '100%' }}
+                            >
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        <AccountBoxIcon fontSize='large' />
+                                    </ListItemIcon>
+                                    <ListItemText primary='Mi perfíl' />
+                                </ListItemButton>
+                            </Link>
                         </ListItem>
                         <Divider />
                         <ListItem disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    <OutputIcon fontSize='large'/>
-                                </ListItemIcon>
-                                <ListItemText primary='Salir' />
-                            </ListItemButton>
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        <OutputIcon fontSize='large' />
+                                    </ListItemIcon>
+                                    <ListItemText primary='Salir' />
+                                </ListItemButton>
                         </ListItem>
 
                     </List>
