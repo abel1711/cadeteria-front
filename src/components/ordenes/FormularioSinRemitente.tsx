@@ -74,7 +74,7 @@ export const FormularioSinRemitente = ({ typeOrden, ciudades }: Props) => {
                             <Grid container item spacing={2} sm={6} >
 
                                 <Typography component='h1' variant='h5' align='center' width={'100%'} mt={2}>
-                                    Datos Destinatario (a quién)
+                                    Datos Destinatario (quien recibe)
                                 </Typography>
 
                                 <Grid item xs={12}>
