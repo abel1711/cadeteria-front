@@ -1,5 +1,6 @@
 import { Box, Button, Grid, InputAdornment, TextField, Tooltip, Typography, MenuItem } from '@mui/material';
 import { Formik } from "formik"
+import * as Yup from 'yup';
 
 interface Props {
     typeOrden: string;
@@ -25,7 +26,6 @@ export const FormularioConRemitente = ({ typeOrden, ciudades }: Props) => {
                     peso: '',
                     costo: ''
                 },
-                tipoDeOrden: typeOrden,
                 destinatario: {
                     datosPersonales: {
                         nombre: "",
@@ -40,24 +40,41 @@ export const FormularioConRemitente = ({ typeOrden, ciudades }: Props) => {
                     }
                 }
             }}
-            // validationSchema={Yup.object().shape({
-            //     telefono: Yup.number().required('Por favor ingresa tu telefono'),
-            //     password: Yup.string()
-            //         .required('Por favor ingrese una contraseña')
-            //         .matches(
-            //             /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/,
-            //             'Debe contener 8 caracteres, una mayuscula, una minuscula y un número',
-            //         ),
-            //     nombre: Yup.string().required('Por favor ingresa tu nombre o empresa'),
-            //     email: Yup.string().required('Por favor ingresa tu email'),
-            //     direccion: Yup.object().shape({
-            //         calle: Yup.string().required('Por favor ingresa la calle'),
-            //         numero: Yup.number().required('Por favor ingresa el numero'),
-            //         ciudad: Yup.string().required('Por favor ingresa la ciudad')
-            //     })
-            // })}
+            validationSchema={Yup.object().shape({
+                destinatario: Yup.object().shape({
+                    datosPersonales: Yup.object().shape({
+                        nombre: Yup.string().required('El nombre del destinatarío es requerido'),
+                        telefono: Yup.string().required('El teléfono del destinatarío es requerido'),
+                        email: Yup.string().email('Email invalido').required('El email del destinatarío es requerido'),
+                    }),
+                    direccion: Yup.object().shape({
+                        calle: Yup.string().required('La calle del destinatarío es requerido'),
+                        numero: Yup.string().required('El numero de la calle del destinatarío es requerido'),
+                        ciudad: Yup.string().required('La ciudad del destinatarío es requerido'),
+                        infoAdicional: Yup.string().required('Por favor ingresa información adicional de la casa del destinatarío'),
+                    }),
+                }),
+                infoPaquete: Yup.object().shape({
+                    largo: Yup.string().required('El largo del paquete es requerido'),
+                    ancho: Yup.string().required('El ancho del paquete es requerido'),
+                    alto: Yup.string().required('El alto del paquete es requerido'),
+                    peso: Yup.string().required('El Peso del paquete es requerido'),
+
+                }),
+                puntoOrigen: Yup.object().shape({
+                    calle: Yup.string().required('La calle de retiro es requerido'),
+                    numero: Yup.string().required('El numero de la calle de retiro es requerido'),
+                    ciudad: Yup.string().required('La ciudad del retiro es requerido'),
+                    infoAdicional: Yup.string().required('Por favor ingresa información adicional de la casa de donde debemos retirar el paquete'),
+
+                })
+            })}
             onSubmit={async (values, { resetForm }) => {
-                console.log('values', JSON.stringify(values, null, 2))
+                const formulario = {
+                    ...values,
+                    tipoDeOrden: typeOrden,
+                }
+                console.log(JSON.stringify(formulario, null, 2))
             }}
         >
             {
