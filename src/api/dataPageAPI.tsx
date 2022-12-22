@@ -1,5 +1,6 @@
 import axios from 'axios';
+import { baseUrl } from '../config/baseUrl';
 
 export const dataPageAPI = axios.create({
-    baseURL:'http://192.168.0.244:8080/api/data-page'
+    baseURL:`${baseUrl}/api/data-page`
 })
