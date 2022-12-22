@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { Box, Typography, FormControlLabel, Avatar, Checkbox, TextField, InputAdornment, MenuItem, Tooltip } from '@mui/material';
 import { Container } from '@mui/system';
@@ -7,6 +7,7 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import { FormularioConRemitente } from '../ordenes/FormularioConRemitente';
 import { FormularioSinRemitente } from '../ordenes/FormularioSinRemitente';
 import { useAppSelector } from '../../redux/hooks';
+import { HOCTransicion } from '../HOCTransicion';
 
 export const NuevaOrdenCliente = () => {
 
@@ -14,8 +15,10 @@ export const NuevaOrdenCliente = () => {
     const [conDireccionRemitente, setConDireccionRemitente] = useState(false)
 
     const { descripcionPACK, descriptionMOTOPACK, ciudades } = useAppSelector(state => state.dataPage);
-
     const [tipoDeOrden, setTipoDeOrden] = useState('@PACK');
+    const conDireccionRef = useRef(null);
+    const sinDireccionRef = useRef(null);
+    const nodeRef = conDireccionRemitente ? conDireccionRef : sinDireccionRef;
 
     return (
         <Container component="main" maxWidth="lg" >
@@ -27,10 +30,10 @@ export const NuevaOrdenCliente = () => {
                     paddingTop: 2
                 }}
             >
-                <Box  sx={{
+                <Box sx={{
                     display: 'flex',
                     flexDirection: 'column',
-                    alignItems:'center',
+                    alignItems: 'center',
                     maxWidth: 500,
                 }}>
                     <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
@@ -84,11 +87,16 @@ export const NuevaOrdenCliente = () => {
                         }}
                     />
                 </Box>
-                {
-                    conDireccionRemitente
-                        ? <FormularioConRemitente typeOrden={tipoDeOrden} ciudades={ciudades} />
-                        : <FormularioSinRemitente typeOrden={tipoDeOrden} ciudades={ciudades} />
-                }
+                <HOCTransicion
+                    llave={ conDireccionRemitente ? 'con-direccion' : 'sin-direccion'}
+                    nodeRef={ nodeRef }
+                >
+                    {
+                        conDireccionRemitente
+                            ? <FormularioConRemitente nodeRef={nodeRef} typeOrden={tipoDeOrden} ciudades={ciudades} />
+                            : <FormularioSinRemitente nodeRef={nodeRef} typeOrden={tipoDeOrden} ciudades={ciudades} />
+                    }
+                </HOCTransicion>
             </Box>
         </Container>
     )
