@@ -42,7 +42,7 @@ export interface Usuario {
 
 export interface Direccion {
 	calle:         string;
-	numero:        number;
+	numero:        string;
 	ciudad:        string;
 	infoAdicional?: string;
 }
@@ -78,6 +78,51 @@ export interface Servicio {
 	titulo: string;
 	texto:  string;
 	_id?:    string;
+}
+
+//tipado al formulario para crear orden sin domicilio remitente
+
+
+export interface FormSinDomicilioRemitente {
+	infoPaquete:  InfoPaquete;
+	tipoDeOrden:  string;
+	destinatario: Destinatario;
+}
+
+export interface Destinatario {
+	datosPersonales: DatosPersonales;
+	direccion:       Direccion;
+}
+
+export interface DatosPersonales {
+	nombre:   string;
+	telefono: string;
+	email:    string;
+}
+
+//tipado al fomulario con domicilio de remitente
+
+
+export interface FormConDomicilioRemitente {
+	puntoOrigen:  PuntoOrigen;
+	infoPaquete:  InfoPaquete;
+	tipoDeOrden:  string;
+	destinatario: Destinatario;
+}
+
+export interface PuntoOrigen {
+	calle:         string;
+	numero:        string;
+	ciudad:        string;
+	infoAdicional: string;
+}
+
+export interface InfoPaquete {
+	largo: string;
+	ancho: string;
+	alto:  string;
+	peso:  string;
+	costo: string;
 }
 
 
