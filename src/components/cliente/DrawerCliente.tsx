@@ -5,6 +5,7 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import OutputIcon from '@mui/icons-material/Output';
+import HomeIcon from '@mui/icons-material/Home';
 import { Link } from 'react-router-dom';
 
 export const DrawerCliente = () => {
@@ -34,18 +35,31 @@ export const DrawerCliente = () => {
                 }}
             >
                 <Box
-                role='presentation'
+                    role='presentation'
                     sx={{
                         width: 300,
                         padding: 1,
                         paddingTop: 5,
                     }}
                     onClick={() => setShowDrawer(false)}
-                    
+
                 >
                     <List>
 
 
+                        <ListItem disablePadding>
+                            <Link
+                                to={''}
+                                style={{ color: 'inherit', textDecoration: 'none', display: 'flex', width: '100%' }}
+                            >
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        <HomeIcon fontSize='large' />
+                                    </ListItemIcon>
+                                    <ListItemText primary='Novedades' />
+                                </ListItemButton>
+                            </Link>
+                        </ListItem>
                         <ListItem disablePadding>
                             <Link
                                 to={'nueva-orden'}
@@ -88,12 +102,12 @@ export const DrawerCliente = () => {
                         </ListItem>
                         <Divider />
                         <ListItem disablePadding>
-                                <ListItemButton>
-                                    <ListItemIcon>
-                                        <OutputIcon fontSize='large' />
-                                    </ListItemIcon>
-                                    <ListItemText primary='Salir' />
-                                </ListItemButton>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <OutputIcon fontSize='large' />
+                                </ListItemIcon>
+                                <ListItemText primary='Salir' />
+                            </ListItemButton>
                         </ListItem>
 
                     </List>
