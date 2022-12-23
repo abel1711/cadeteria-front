@@ -1,4 +1,4 @@
-export { LoginScreen } from './LoginScreen';
+export { LoginScreen } from './login/LoginScreen';
 export { RegistroScreen } from './RegistroScreen';
 export { ErrorPage } from './ErrorScreen';
 export { HomeScreen } from './HomeScreen';
