@@ -15,5 +15,5 @@ export const RutasPrivadas = ({children}: Props) => {
 
   return (!!token && !!usuario?.rol)
     ? children
-    : <Navigate to={'/out/login'} />
+    : <Navigate to={'/login'} />
 }
