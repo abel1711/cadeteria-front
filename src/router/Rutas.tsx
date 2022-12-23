@@ -3,11 +3,12 @@ import { Route, Routes } from 'react-router-dom';
 import { useAppSelector } from '../redux/hooks';
 import { HomeScreen, LoginScreen, RegistroScreen } from '../screens';
 import { RutasPublicas, RutasPrivadas, RutasCliente, RutasCadete, RutasAdministrador } from './';
+import { ModalLoading } from '../components/ModalLoading';
 
 
 export const Rutas = () => {
 
-    const { usuario } = useAppSelector(state => state.auth );
+    const { usuario } = useAppSelector(state => state.auth);
 
     const handleUser = () => {
         switch (usuario?.rol) {
@@ -26,31 +27,34 @@ export const Rutas = () => {
     }
 
     return (
-        <Routes>
+        <>
+        <ModalLoading />
+            <Routes>
 
-            <Route path="/*" element={
-                <RutasPublicas>
-                    <Routes>
-                        <Route path="/login" element={< LoginScreen />} />
-                        <Route path="/registro" element={< RegistroScreen />} />
-                        <Route path="/*" element={< HomeScreen />} />
-                    </Routes>
-                </RutasPublicas>
-            }
-            />
+                <Route path="/*" element={
+                    <RutasPublicas>
+                        <Routes>
+                            <Route path="/login" element={< LoginScreen />} />
+                            <Route path="/registro" element={< RegistroScreen />} />
+                            <Route path="/*" element={< HomeScreen />} />
+                        </Routes>
+                    </RutasPublicas>
+                }
+                />
 
 
-            <Route path="in/*" element={
-                <RutasPrivadas>
-                    <Routes>
-                        <Route
-                            path="/usuario/*"
-                            element={handleUser()}
-                        />
-                    </Routes>
-                </RutasPrivadas>
-            } />
+                <Route path="in/*" element={
+                    <RutasPrivadas>
+                        <Routes>
+                            <Route
+                                path="/usuario/*"
+                                element={handleUser()}
+                            />
+                        </Routes>
+                    </RutasPrivadas>
+                } />
 
-        </Routes>
+            </Routes>
+        </>
     )
 }
