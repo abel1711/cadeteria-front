@@ -1,9 +1,9 @@
 import { useEffect } from "react"
 import { CssBaseline, Typography, Box, Grid, List, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import { Container } from "@mui/system";
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { startGetDataPage } from '../redux/slices/data-page/data-pageThunks';
-import { FAQ, NavbarHome } from "../components";
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { startGetDataPage } from '../../redux/slices/data-page/data-pageThunks';
+import { FAQ, NavbarHome } from "../../components";
 
 export const HomeScreen = () => {
 

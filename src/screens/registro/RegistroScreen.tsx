@@ -27,11 +27,11 @@ import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-import { Copyright, ShowErrors } from '../components';
-import { FormRegistroValues } from '../interfaces/interface';
-import { useAppSelector, useAppDispatch } from '../redux/hooks';
-import { startRegisterUsuario } from '../redux/slices/auth';
-import { dataPageAPI } from '../api/dataPageAPI';
+import { Copyright, ShowErrors } from '../../components';
+import { FormRegistroValues } from '../../interfaces/interface';
+import { useAppSelector, useAppDispatch } from '../../redux/hooks';
+import { startRegisterUsuario } from '../../redux/slices/auth';
+import { dataPageAPI } from '../../api/dataPageAPI';
 
 
 export const RegistroScreen = () => {
