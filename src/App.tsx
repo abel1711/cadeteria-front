@@ -18,7 +18,6 @@ function App() {
         <BrowserRouter>
           <CssBaseline />
             <Rutas />
-          <ModalLoading />
         </BrowserRouter>
       </ThemeProvider>
     </Provider>
