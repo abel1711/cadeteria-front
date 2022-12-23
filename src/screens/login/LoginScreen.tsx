@@ -1,19 +1,12 @@
-import { useState } from 'react';
 import {
 	Avatar,
 	Box,
 	Button,
 	Container,
-	CssBaseline,
 	Grid,
-	TextField,
 	Typography,
-	InputAdornment,
-	IconButton
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import PhoneIcon from '@mui/icons-material/Phone';
 import { useTheme } from '@mui/material/styles';
 
@@ -22,10 +15,12 @@ import * as Yup from 'yup';
 
 import { Link } from 'react-router-dom';
 
-import { FormLoginValues } from '../interfaces/interface';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { startloginUsuario } from '../redux/slices/auth/authThunks';
-import { Copyright, ShowErrors } from '../components';
+import { FormLoginValues } from '../../interfaces/interface';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { startloginUsuario } from '../../redux/slices/auth/authThunks';
+import { Copyright, ShowErrors } from '../../components';
+import { Input } from '../../components/Input';
+import { InputPassword } from '../../components/InputPassword';
 
 
 
@@ -34,9 +29,9 @@ export const LoginScreen = () => {
 	const theme = useTheme();
 
 	const { isLoading } = useAppSelector(state => state.loading);
+
 	const dispatch = useAppDispatch();
 
-	const [showPassword, setShowPassword] = useState(false)
 
 	return (
 		<Container component="main" maxWidth="xs">
@@ -57,8 +52,8 @@ export const LoginScreen = () => {
 
 				<Formik
 					initialValues={{
-						telefono: '',
-						password: '',
+						telefono: '543513710124',
+						password: '123456Ab',
 					}}
 					onSubmit={async (values: FormLoginValues, { resetForm }) => {
 						dispatch(startloginUsuario(values));
@@ -73,70 +68,25 @@ export const LoginScreen = () => {
 						({ errors, handleSubmit, getFieldProps, touched }) => (
 
 							<Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-								<TextField
-									margin="normal"
-									required
-									fullWidth
-									id="telefono"
-									label="Telefono"
+								<Input
+									errors={errors}
+									getFieldProps={getFieldProps}
+									touched={touched}
+									field='telefono'
+									label='Telefono'
 									placeholder='54351996699'
-									InputProps={{
-										startAdornment: (
-											<InputAdornment position='start' >
-												<PhoneIcon />
-											</InputAdornment>
-										)
-									}}
-									{
-									...getFieldProps('telefono')
-									}
-									error={!!errors.telefono && !!touched.telefono}
+									icon={<PhoneIcon />}
 								/>
-								{
-									(touched.telefono && errors.telefono) && (
-										<Typography component="p"  sx={{
-											color: 'error.main'
-										}}>
-											{errors.telefono}
-										</Typography>
-									)
-								}
-								<TextField
-									margin="normal"
-									required
-									fullWidth
-									label="Contraseña"
-									type={showPassword ? 'text' : 'password'}
-									id="contraseña"
-									autoComplete="current-password"
-									InputProps={{
-										startAdornment: (
-											<InputAdornment position='start' >
-												<IconButton
-													onClick={() => setShowPassword(prev => !prev)}
-													style={{ padding: 0}}
-												>
-													{
-														showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />
-													}
-												</IconButton>
-											</InputAdornment>
-										)
-									}}
-									error={!!errors.password && !!touched.password}
-									{
-									...getFieldProps('password')
-									}
+
+								<InputPassword 
+									errors={errors}
+									field='password'
+									getFieldProps={getFieldProps}
+									label='Contraseña'
+									touched={touched}
+									placeholder='Ingresa tu contraseña'
 								/>
-								{
-									(touched.password && errors.password) && (
-										<Typography component="p"  sx={{
-											color: 'error.main'
-										}}>
-											{errors.password}
-										</Typography>
-									)
-								}
+
 								<Button
 									type="submit"
 									fullWidth
@@ -146,7 +96,7 @@ export const LoginScreen = () => {
 								>
 									Ingresar
 								</Button>
-								<ShowErrors />
+
 								<Grid container>
 									<Grid item xs>
 										<Link to="#" style={{
