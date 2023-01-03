@@ -13,10 +13,10 @@ export const NuevaOrdenCliente = () => {
 
 
     const [conDireccionRemitente, setConDireccionRemitente] = useState(false)
-
-    const { descripcionPACK, descriptionMOTOPACK, ciudades } = useAppSelector(state => state.dataPage);
-
     const [tipoDeOrden, setTipoDeOrden] = useState('@PACK');
+
+    const { descripcionPACK, descripcionMOTOPACK, ciudades } = useAppSelector(state => state.dataPage);
+
 
     return (
         <Container component="main" maxWidth="lg" >
@@ -67,8 +67,8 @@ export const NuevaOrdenCliente = () => {
                     }}>
                         {
                             (tipoDeOrden === '@PACK')
-                                ? descripcionPACK
-                                : descriptionMOTOPACK
+                                ? descripcionPACK.descripcion
+                                : descripcionMOTOPACK.descripcion
                         }
                     </Typography>
                     <FormControlLabel
