@@ -70,8 +70,12 @@ export interface RespDataPage {
 	servicios:              Servicio[];
 	ciudades:               string[];
 	__v?:                    number;
-	descripcionPACK:     string;
-	descriptionMOTOPACK: string;
+	descripcionPACK:     Descripcion;
+	descripcionMOTOPACK: Descripcion;
+}
+
+interface Descripcion {
+	descripcion: string;
 }
 
 export interface Servicio {
