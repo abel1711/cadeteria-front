@@ -1,7 +1,8 @@
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Box, Grid, Typography, TextField, InputAdornment, Tooltip, Button, MenuItem } from '@mui/material';
-import { FormSinDomicilioRemitente } from '../../interfaces/interface';
+import { useAppDispatch } from '../../redux/hooks';
+import { startNuevaOrden } from '../../redux/slices/nueva-orden/nueva-ordenThunks';
 
 interface Props {
     typeOrden: string;
@@ -9,6 +10,8 @@ interface Props {
 }
 
 export const FormularioSinRemitente = ({ typeOrden, ciudades }: Props) => {
+
+    const dispatch = useAppDispatch();
 
     return (
         <Formik
@@ -27,6 +30,7 @@ export const FormularioSinRemitente = ({ typeOrden, ciudades }: Props) => {
                     }
                 },
                 infoPaquete: {
+                    bultos: '',
                     largo: '',
                     ancho: '',
                     alto: '',
@@ -50,6 +54,7 @@ export const FormularioSinRemitente = ({ typeOrden, ciudades }: Props) => {
                     }),
                 }),
                 infoPaquete: Yup.object().shape({
+                    bultos: Yup.string().required('La cantidad de bultos es requerida'),
                     largo: Yup.string().required('El largo del paquete es requerido'),
                     ancho: Yup.string().required('El ancho del paquete es requerido'),
                     alto: Yup.string().required('El alto del paquete es requerido'),
@@ -57,13 +62,14 @@ export const FormularioSinRemitente = ({ typeOrden, ciudades }: Props) => {
 
                 })
             })}
-            onSubmit={async (values, { resetForm }) => {
+            onSubmit={ (values, { resetForm }) => {
 
                 const formulario = {
                     ...values,
                     tipoDeOrden: typeOrden,
                 }
-
+                console.log(formulario)
+            //    dispatch(startNuevaOrden(formulario))
             }}
         >
             {
@@ -316,7 +322,39 @@ export const FormularioSinRemitente = ({ typeOrden, ciudades }: Props) => {
                                 <Typography component="h1" variant="h5" width={'100%'} mt={2} align='center'>
                                     Información del paquete
                                 </Typography>
-                                <Grid item xs={12} sm={6}>
+                                <Grid item xs={6} sm={4}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        label="Cantidad de bultos"
+                                        type="number"
+                                        id="bultos"
+                                        inputProps={{ min: 0 }}
+                                        placeholder='En unidad'
+                                        autoComplete="none"
+                                        InputProps={{
+                                            startAdornment: (
+                                                <InputAdornment position='start' >
+                                                    {/* <SignpostIcon /> */}
+                                                </InputAdornment>
+                                            )
+                                        }}
+                                        error={!!touched.infoPaquete?.bultos && !!errors.infoPaquete?.bultos}
+                                        {
+                                        ...getFieldProps('infoPaquete.bultos')
+                                        }
+                                    />
+                                    {
+                                        (touched.infoPaquete?.bultos && errors.infoPaquete?.bultos) && (
+                                            <Typography component="p" sx={{
+                                                color: 'error.main'
+                                            }} mt={1}>
+                                                {errors.infoPaquete?.bultos}
+                                            </Typography>
+                                        )
+                                    }
+                                </Grid>
+                                <Grid item xs={6} sm={4}>
                                     <TextField
                                         required
                                         fullWidth
@@ -348,7 +386,7 @@ export const FormularioSinRemitente = ({ typeOrden, ciudades }: Props) => {
                                         )
                                     }
                                 </Grid>
-                                <Grid item xs={12} sm={6}>
+                                <Grid item xs={6} sm={4}>
                                     <TextField
                                         required
                                         fullWidth
@@ -380,7 +418,7 @@ export const FormularioSinRemitente = ({ typeOrden, ciudades }: Props) => {
                                         )
                                     }
                                 </Grid>
-                                <Grid item xs={12} sm={6}>
+                                <Grid item xs={6} sm={4}>
                                     <TextField
                                         required
                                         fullWidth
@@ -412,7 +450,7 @@ export const FormularioSinRemitente = ({ typeOrden, ciudades }: Props) => {
                                         )
                                     }
                                 </Grid>
-                                <Grid item xs={12} sm={6}>
+                                <Grid item xs={6} sm={4}>
                                     <TextField
                                         required
                                         fullWidth
