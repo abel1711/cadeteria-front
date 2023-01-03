@@ -13,8 +13,12 @@ const initialState: RespDataPage = {
         texto: ''
     }],
     ciudades: [''],
-    descripcionPACK: '',
-    descriptionMOTOPACK: ''
+    descripcionPACK: {
+        descripcion: ''
+    },
+    descripcionMOTOPACK: {
+        descripcion: ''
+    }
 
 }
 
@@ -29,7 +33,7 @@ export const dataPageSlice = createSlice({
             state.objetivos = payload.objetivos;
             state.servicios = payload.servicios;
             state.descripcionPACK = payload.descripcionPACK;
-            state.descriptionMOTOPACK = payload.descriptionMOTOPACK;
+            state.descripcionMOTOPACK = payload.descripcionMOTOPACK;
         }
     },
 })
