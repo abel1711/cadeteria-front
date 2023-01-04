@@ -30,7 +30,7 @@ export const FormularioSinRemitente = ({ typeOrden, ciudades }: Props) => {
                     }
                 },
                 infoPaquete: {
-                    bultos: '',
+                    bultos: '1',
                     largo: '',
                     ancho: '',
                     alto: '',
@@ -329,7 +329,7 @@ export const FormularioSinRemitente = ({ typeOrden, ciudades }: Props) => {
                                         label="Cantidad de bultos"
                                         type="number"
                                         id="bultos"
-                                        inputProps={{ min: 0 }}
+                                        inputProps={{ min: 1 }}
                                         placeholder='En unidad'
                                         autoComplete="none"
                                         InputProps={{
