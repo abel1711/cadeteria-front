@@ -122,6 +122,7 @@ export interface PuntoOrigen {
 }
 
 export interface InfoPaquete {
+	bultos: string;
 	largo: string;
 	ancho: string;
 	alto:  string;
