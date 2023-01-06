@@ -87,8 +87,8 @@ export const NuevaOrdenCliente = () => {
                 </Box>
                 {
                     conDireccionRemitente
-                        ? <FormularioConRemitente typeOrden={tipoDeOrden} ciudades={ciudades} />
-                        : <FormularioSinRemitente typeOrden={tipoDeOrden} ciudades={ciudades} />
+                        ? <FormularioConRemitente typeOrden={tipoDeOrden} />
+                        : <FormularioSinRemitente typeOrden={tipoDeOrden} />
                 }
             </Box>
         </Container>

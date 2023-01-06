@@ -76,6 +76,7 @@ export interface RespDataPage {
 
 interface Descripcion {
 	descripcion: string;
+	precioBase: string;
 }
 
 export interface Servicio {

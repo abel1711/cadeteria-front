@@ -26,5 +26,5 @@ export const calcularCostoPaquete = (infoPaquete: InfoPaquete, precioBase: Strin
     console.log('costo segun el volumen: ', costoSegunVolumen)
     console.log('volumen total: ',volumenTotal)
     console.log('costo final: ', costoMasBultos)
-
+    return costoMasBultos;
 }

@@ -1,17 +1,18 @@
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Box, Grid, Typography, TextField, InputAdornment, Tooltip, Button, MenuItem } from '@mui/material';
-import { useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { startNuevaOrden } from '../../redux/slices/nueva-orden/nueva-ordenThunks';
 
 interface Props {
     typeOrden: string;
-    ciudades: string[];
 }
 
-export const FormularioSinRemitente = ({ typeOrden, ciudades }: Props) => {
+export const FormularioSinRemitente = ({ typeOrden }: Props) => {
 
     const dispatch = useAppDispatch();
+
+    const { descripcionPACK, descripcionMOTOPACK, ciudades } = useAppSelector(state => state.dataPage);
 
     return (
         <Formik
@@ -34,7 +35,7 @@ export const FormularioSinRemitente = ({ typeOrden, ciudades }: Props) => {
                     largo: '',
                     ancho: '',
                     alto: '',
-                    peso: '',
+                    peso: '1',
                     costo: ''
                 },
 

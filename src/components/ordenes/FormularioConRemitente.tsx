@@ -3,17 +3,20 @@ import { Formik } from "formik"
 import * as Yup from 'yup';
 import { FormConDomicilioRemitente } from '../../interfaces/interface';
 import { startNuevaOrden } from '../../redux/slices/nueva-orden/nueva-ordenThunks';
-import { useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { calcularCostoPaquete } from '../../utils/calcularCostoPaquete';
 
 interface Props {
     typeOrden: string;
-    ciudades: string[];
 }
 
 
-export const FormularioConRemitente = ({ typeOrden, ciudades }: Props) => {
+export const FormularioConRemitente = ({ typeOrden }: Props) => {
 
     const dispatch = useAppDispatch();
+    const { descripcionPACK, descripcionMOTOPACK, ciudades } = useAppSelector(state => state.dataPage);
+
+    const precio = (typeOrden == '@PACK')? descripcionPACK.precioBase : descripcionMOTOPACK.precioBase;
 
     return (
 
@@ -31,7 +34,7 @@ export const FormularioConRemitente = ({ typeOrden, ciudades }: Props) => {
                     largo: '',
                     ancho: '',
                     alto: '',
-                    peso: '',
+                    peso: '1',
                     costo: ''
                 },
                 destinatario: {
@@ -649,7 +652,7 @@ export const FormularioConRemitente = ({ typeOrden, ciudades }: Props) => {
                                         color: 'paper.main'
                                     }} mt={1}>
                                         {
-                                            JSON.stringify( values.infoPaquete, null, 4)
+                                            calcularCostoPaquete(values.infoPaquete, precio)
                                         }
                                     </Typography>
                                 }
