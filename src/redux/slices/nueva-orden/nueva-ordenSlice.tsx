@@ -4,34 +4,38 @@ import { FormConDomicilioRemitente } from '../../../interfaces/interface';
 
 
 
-const initialState: FormConDomicilioRemitente = {
-    puntoOrigen: {
-        calle: '',
-        numero: '',
-        ciudad: '',
-        infoAdicional: '',
-    },
-    infoPaquete: {
-        bultos: '',
-        largo: '',
-        ancho: '',
-        alto: '',
-        peso: '',
-        costo: '',
-    },
-    tipoDeOrden: '',
-    destinatario: {
-        datosPersonales: {
-            nombre: '',
-            telefono: '',
-            email: '',
-        },
-        direccion: {
+const initialState = {
+    
+    tenemosOrden : false,
+    orden: {
+        puntoOrigen: {
             calle: '',
             numero: '',
             ciudad: '',
             infoAdicional: '',
+        },
+        infoPaquete: {
+            bultos: '',
+            largo: '',
+            ancho: '',
+            alto: '',
+            peso: '',
+            costo: '',
+        },
+        tipoDeOrden: '',
+        destinatario: {
+            datosPersonales: {
+                nombre: '',
+                telefono: '',
+                email: '',
+            },
+            direccion: {
+                calle: '',
+                numero: '',
+                ciudad: '',
+            }
         }
+
     }
 }
 
@@ -40,12 +44,11 @@ export const nuevaOrdenSlice = createSlice({
     initialState,
     reducers: {
         setNuevaOrden: (state, { payload }: PayloadAction<FormConDomicilioRemitente>) => {
-            if(!!payload.puntoOrigen){
-                state.puntoOrigen = payload.puntoOrigen;
-            }
-            state.destinatario = payload.destinatario;
-            state.infoPaquete = payload.infoPaquete;
-            state.tipoDeOrden = payload.tipoDeOrden;
+            state.orden = payload;
+            state.tenemosOrden = true
+        },
+        resetNuevaOrden: ()=>{
+            return initialState;
         }
     }
 })
