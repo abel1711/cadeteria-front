@@ -22,9 +22,5 @@ export const calcularCostoPaquete = (infoPaquete: InfoPaquete, precioBase: Strin
     const costoMasBultos = //se calcula sumandole el 50% a partir del segundo bulto
         (bultosNumber > 1) ? costoSegunVolumen * (0.5 + (bultosNumber * 0.5)) : costoSegunVolumen;
     // volumen maximo de la camioneta en centimetros es: 2200000
-    console.log(volumen)
-    console.log('costo segun el volumen: ', costoSegunVolumen)
-    console.log('volumen total: ',volumenTotal)
-    console.log('costo final: ', costoMasBultos)
     return costoMasBultos;
 }
