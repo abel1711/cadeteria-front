@@ -7,6 +7,7 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import { FormularioConRemitente } from '../ordenes/FormularioConRemitente';
 import { FormularioSinRemitente } from '../ordenes/FormularioSinRemitente';
 import { useAppSelector } from '../../redux/hooks';
+import { ModalCrearOrden } from '../ModalCrearOrden';
 
 
 export const NuevaOrdenCliente = () => {
@@ -20,6 +21,7 @@ export const NuevaOrdenCliente = () => {
 
     return (
         <Container component="main" maxWidth="lg" >
+            <ModalCrearOrden />
             <Box
                 sx={{
                     display: 'flex',
