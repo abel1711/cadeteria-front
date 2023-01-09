@@ -12,6 +12,7 @@ const initialState: FormConDomicilioRemitente = {
         infoAdicional: '',
     },
     infoPaquete: {
+        bultos: '',
         largo: '',
         ancho: '',
         alto: '',

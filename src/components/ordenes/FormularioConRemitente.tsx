@@ -16,7 +16,7 @@ export const FormularioConRemitente = ({ typeOrden }: Props) => {
     const dispatch = useAppDispatch();
     const { descripcionPACK, descripcionMOTOPACK, ciudades } = useAppSelector(state => state.dataPage);
 
-    const precio = (typeOrden == '@PACK')? descripcionPACK.precioBase : descripcionMOTOPACK.precioBase;
+    const precio = (typeOrden == '@PACK') ? descripcionPACK.precioBase : descripcionMOTOPACK.precioBase;
 
     return (
 
@@ -639,25 +639,6 @@ export const FormularioConRemitente = ({ typeOrden }: Props) => {
                                 </Grid>
                             </Grid>
 
-                            <Grid item alignItems={'center'} justifyContent='center' display={'flex'} width='100%'>
-
-                                {
-                                    (
-                                        values.infoPaquete.alto != ''
-                                        && values.infoPaquete.ancho != ''
-                                        && values.infoPaquete.bultos != ''
-                                        && values.infoPaquete.largo != ''
-                                        && values.infoPaquete.peso != ''
-                                    ) && <Typography component="p" sx={{
-                                        color: 'paper.main'
-                                    }} mt={1}>
-                                        {
-                                            calcularCostoPaquete(values.infoPaquete, precio)
-                                        }
-                                    </Typography>
-                                }
-
-                            </Grid>
                             <Grid item alignItems={'center'} justifyContent='center' display={'flex'} width='100%'>
                                 <Button
                                     type="button"
