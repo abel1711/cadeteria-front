@@ -51,36 +51,36 @@ export const FormularioConRemitente = ({ typeOrden }: Props) => {
                     }
                 }
             }}
-            // validationSchema={Yup.object().shape({
-            //     destinatario: Yup.object().shape({
-            //         datosPersonales: Yup.object().shape({
-            //             nombre: Yup.string().required('El nombre del destinatarío es requerido'),
-            //             telefono: Yup.string().required('El teléfono del destinatarío es requerido'),
-            //             email: Yup.string().email('Email invalido').required('El email del destinatarío es requerido'),
-            //         }),
-            //         direccion: Yup.object().shape({
-            //             calle: Yup.string().required('La calle del destinatarío es requerido'),
-            //             numero: Yup.string().required('El numero de la calle del destinatarío es requerido'),
-            //             ciudad: Yup.string().required('La ciudad del destinatarío es requerido'),
-            //             infoAdicional: Yup.string().required('Por favor ingresa información adicional de la casa del destinatarío'),
-            //         }),
-            //     }),
-            //     infoPaquete: Yup.object().shape({
-            //         bultos: Yup.string().required('La cantidad de bultos es requerida'),
-            //         largo: Yup.string().required('El largo del paquete es requerido'),
-            //         ancho: Yup.string().required('El ancho del paquete es requerido'),
-            //         alto: Yup.string().required('El alto del paquete es requerido'),
-            //         peso: Yup.string().required('El Peso del paquete es requerido'),
+            validationSchema={Yup.object().shape({
+                destinatario: Yup.object().shape({
+                    datosPersonales: Yup.object().shape({
+                        nombre: Yup.string().required('El nombre del destinatarío es requerido'),
+                        telefono: Yup.string().required('El teléfono del destinatarío es requerido'),
+                        email: Yup.string().email('Email invalido').required('El email del destinatarío es requerido'),
+                    }),
+                    direccion: Yup.object().shape({
+                        calle: Yup.string().required('La calle del destinatarío es requerido'),
+                        numero: Yup.string().required('El numero de la calle del destinatarío es requerido'),
+                        ciudad: Yup.string().required('La ciudad del destinatarío es requerido'),
+                        infoAdicional: Yup.string().required('Por favor ingresa información adicional de la casa del destinatarío'),
+                    }),
+                }),
+                infoPaquete: Yup.object().shape({
+                    bultos: Yup.string().required('La cantidad de bultos es requerida'),
+                    largo: Yup.string().required('El largo del paquete es requerido'),
+                    ancho: Yup.string().required('El ancho del paquete es requerido'),
+                    alto: Yup.string().required('El alto del paquete es requerido'),
+                    peso: Yup.string().required('El Peso del paquete es requerido'),
 
-            //     }),
-            //     puntoOrigen: Yup.object().shape({
-            //         calle: Yup.string().required('La calle de retiro es requerido'),
-            //         numero: Yup.string().required('El numero de la calle de retiro es requerido'),
-            //         ciudad: Yup.string().required('La ciudad del retiro es requerido'),
-            //         infoAdicional: Yup.string().required('Por favor ingresa información adicional de la casa de donde debemos retirar el paquete'),
+                }),
+                puntoOrigen: Yup.object().shape({
+                    calle: Yup.string().required('La calle de retiro es requerido'),
+                    numero: Yup.string().required('El numero de la calle de retiro es requerido'),
+                    ciudad: Yup.string().required('La ciudad del retiro es requerido'),
+                    infoAdicional: Yup.string().required('Por favor ingresa información adicional de la casa de donde debemos retirar el paquete'),
 
-            //     })
-            // })}
+                })
+            })}
             onSubmit={async (values, { resetForm }) => {
                 const formulario = {
                     ...values,
