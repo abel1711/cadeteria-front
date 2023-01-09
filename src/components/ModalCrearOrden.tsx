@@ -3,52 +3,134 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
-import LinearProgress from '@mui/material/LinearProgress';
 import { useAppSelector } from '../redux/hooks';
-import { FormSinDomicilioRemitente, FormConDomicilioRemitente } from '../interfaces/interface';
+import { Button } from '@mui/material';
 
 const style = {
     position: 'absolute' as 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: '80%',
-    height: '80%',
- 
-    display: 'flex',
+    width: '90%',
+    height: '90%',
+    // display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     bgcolor: 'background.paper',
     boxShadow: 24,
     p: 4,
+    overflowY: 'auto'
 };
 
-interface Props {
-    orden: FormSinDomicilioRemitente | FormConDomicilioRemitente;
-}
 
-export const ModalCrearOrden = ({ orden }:Props) => {
+export const ModalCrearOrden = () => {
 
+    const { tenemosOrden, orden } = useAppSelector(state => state.nuevaOrden);
     return (
         <div>
             <Modal
                 aria-labelledby="transition-modal-loading"
                 aria-describedby="transition-modal-loading"
-                open={true}
+                open={tenemosOrden}
                 closeAfterTransition
                 BackdropComponent={Backdrop}
                 BackdropProps={{
                     timeout: 500,
                 }}
             >
-                <Fade in={true}>
+                <Fade in={tenemosOrden}>
                     <Box sx={style}>
-                        <Typography id="transition-modal-title" variant="h6" component="h2" sx={{
-                            color: 'black'
+                        <Typography id="transition-modal-title" variant="h5" component="h2" sx={{
+                            color: 'inherit'
                         }}
-                        >
-{JSON.stringify(orden, null, 4)}
+                        >{`Estas por crear el siguiente pedido de envio... a travez de ${orden.tipoDeOrden}, por favor controla que este bien la información`}
+
                         </Typography>
+                        <Box sx={{
+                            marginTop: 2
+                        }}>
+
+                            <Typography id="transition-modal-title" variant="h6" component="h2" sx={{
+                                color: 'inherit'
+                            }}
+                            >Envias a:</Typography>
+                            <Box sx={{
+                                marginLeft: 10
+                            }}>
+
+                                <Typography id="transition-modal-title" variant="body1" component="p" sx={{
+                                    color: 'inherit'
+                                }}
+                                >NOMBRE: {orden.destinatario.datosPersonales.nombre}</Typography>
+                                <Typography id="transition-modal-title" variant="body1" component="p" sx={{
+                                    color: 'inherit'
+                                }}
+                                >EMAIL: {orden.destinatario.datosPersonales.email}</Typography>
+                                <Typography id="transition-modal-title" variant="body1" component="p" sx={{
+                                    color: 'inherit'
+                                }}
+                                >TELEFONO: {orden.destinatario.datosPersonales.telefono}</Typography>
+                                <Typography id="transition-modal-title" variant="body1" component="p" sx={{
+                                    color: 'inherit'
+                                }}
+                                >DIRECCION: {`${orden.destinatario.direccion.calle} - ${orden.destinatario.direccion.numero} - ${orden.destinatario.direccion.ciudad}`}</Typography>
+                            </Box>
+                        </Box>
+                        <Box sx={{
+                            marginTop: 2
+                        }}>
+
+                            <Typography id="transition-modal-title" variant="h6" component="h2" sx={{
+                                color: 'inherit'
+                            }}
+                            >Información del/los paquetes:</Typography>
+                            <Box sx={{
+                                marginLeft: 10
+                            }}>
+
+                                <Typography id="transition-modal-title" variant="body1" component="p" sx={{
+                                    color: 'inherit'
+                                }}
+                                >Cantidad de bultos: {orden.infoPaquete.bultos}</Typography>
+                                <Typography id="transition-modal-title" variant="body1" component="p" sx={{
+                                    color: 'inherit'
+                                }}
+                                >Medida del paquete: {`${orden.infoPaquete.alto}cm X ${orden.infoPaquete.ancho}cm X ${orden.infoPaquete.largo}cm`}</Typography>
+                                <Typography id="transition-modal-title" variant="body1" component="p" sx={{
+                                    color: 'inherit'
+                                }}
+                                >Peso de cada paquete: {orden.infoPaquete.peso} Kg.</Typography>
+                            </Box>
+                        </Box>
+                        <Typography id="transition-modal-title" variant="h6" component="h2" sx={{
+                            color: 'inherit',
+                            marginTop: 2
+                        }}
+                        >Costo total: {orden.infoPaquete.costo}</Typography>
+                        <Box sx={{
+                            position:'absolute',
+                            display: 'flex',
+                            justifyContent: 'end',
+                            bottom: 10,
+                            right: 10,
+                        }}>
+                            <Button
+                                type="button"
+                                fullWidth
+                                variant="outlined"
+                                sx={{ m: 1 }}
+                            >
+                                Atras
+                            </Button>
+                            <Button
+                                type="button"
+                                fullWidth
+                                variant="contained"
+                                sx={{ m: 1 }}
+                            >
+                                Crear
+                            </Button>
+                        </Box>
                     </Box>
                 </Fade>
             </Modal>
