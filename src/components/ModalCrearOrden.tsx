@@ -7,6 +7,7 @@ import { useAppSelector, useAppDispatch } from '../redux/hooks';
 import { Button } from '@mui/material';
 import { resetNuevaOrden } from '../redux/slices/nueva-orden/nueva-ordenSlice';
 import { startPostNuevaOrden } from '../redux/slices/nueva-orden/nueva-ordenThunks';
+import { convertirMoneda } from '../utils/convertirMoneda';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -131,7 +132,7 @@ export const ModalCrearOrden = () => {
                             color: 'inherit',
                             marginTop: 2
                         }}
-                        >Costo total: {orden.infoPaquete.costo}</Typography>
+                        >Costo total: {convertirMoneda(Number(orden.infoPaquete.costo))}</Typography>
                         <Box sx={{
                             // position:'absolute',
                             display: 'flex',
