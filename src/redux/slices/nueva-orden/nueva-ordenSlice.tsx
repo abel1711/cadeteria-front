@@ -5,8 +5,8 @@ import { FormConDomicilioRemitente } from '../../../interfaces/interface';
 
 
 const initialState = {
-    
-    tenemosOrden : false,
+
+    tenemosOrden: false,
     orden: {
         puntoOrigen: {
             calle: '',
@@ -33,6 +33,7 @@ const initialState = {
                 calle: '',
                 numero: '',
                 ciudad: '',
+                infoAdicional: '',
             }
         }
 
@@ -47,12 +48,15 @@ export const nuevaOrdenSlice = createSlice({
             state.orden = payload;
             state.tenemosOrden = true
         },
-        resetNuevaOrden: ()=>{
+        setPrecioOrden: (state, { payload }) => {
+            state.orden.infoPaquete.costo = payload;
+        },
+        resetNuevaOrden: () => {
             return initialState;
         }
     }
 })
 
-export const { setNuevaOrden } = nuevaOrdenSlice.actions
+export const { setNuevaOrden, resetNuevaOrden, setPrecioOrden } = nuevaOrdenSlice.actions
 
 export const selectNuevaOrden = (state: RootState) => state.nuevaOrden
