@@ -4,6 +4,8 @@ import { dataPageAPI } from '../../../api/dataPageAPI';
 import { FormConDomicilioRemitente } from '../../../interfaces/interface';
 import { calcularCostoPaquete } from '../../../utils/calcularCostoPaquete';
 import { setNuevaOrden, setPrecioOrden } from './nueva-ordenSlice';
+import { ordenesAPI } from '../../../api';
+import { getToken } from '../../../utils';
 
 
 
@@ -41,8 +43,14 @@ export const startPostNuevaOrden = ( )=>{
 
         
         try {
+            const token = getToken();
+
             const state = getState().nuevaOrden;
-            console.log(state)
+            const {data} = await ordenesAPI.post('/nueva', state.orden, {
+                headers:{
+                    apiToken: token || ''
+                }
+            });
             dispatch( removeLoading())
         } catch (errors: any) {
             console.log(errors)

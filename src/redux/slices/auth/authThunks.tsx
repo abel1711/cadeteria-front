@@ -3,6 +3,7 @@ import { FormLoginValues, FormRegistroValues } from "../../../interfaces";
 import { store } from "../../store";
 import { authAPI, usuariosAPI } from '../../../api';
 import { removeLoading, setLoading } from "../loading/loadingSlice";
+import { setToken } from "../../../utils";
 
 
 
@@ -14,6 +15,8 @@ export const startloginUsuario = ( formValues: FormLoginValues )=>{
         try {
 
             const {data} = await authAPI.post('/login', formValues);
+
+            setToken(data.token)
 
             dispatch( setUsuario(data))
             dispatch( removeLoading())
