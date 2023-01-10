@@ -136,8 +136,7 @@ export const ModalCrearOrden = () => {
                             // position:'absolute',
                             display: 'flex',
                             justifyContent: 'end',
-                            bottom: 10,
-                            right: 10,
+                            marginTop: 10
                         }}>
                             <Button
                                 type="button"
