@@ -44,7 +44,7 @@ export interface Direccion {
 	calle:         string;
 	numero:        string;
 	ciudad:        string;
-	infoAdicional?: string;
+	infoAdicional: string;
 }
 
 //tipado de la respuesta del login o registro cuando tenemos error
