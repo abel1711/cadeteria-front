@@ -3,8 +3,10 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
-import { useAppSelector } from '../redux/hooks';
+import { useAppSelector, useAppDispatch } from '../redux/hooks';
 import { Button } from '@mui/material';
+import { resetNuevaOrden } from '../redux/slices/nueva-orden/nueva-ordenSlice';
+import { startPostNuevaOrden } from '../redux/slices/nueva-orden/nueva-ordenThunks';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -13,7 +15,6 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: '90%',
     height: '90%',
-    // display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     bgcolor: 'background.paper',
@@ -26,6 +27,9 @@ const style = {
 export const ModalCrearOrden = () => {
 
     const { tenemosOrden, orden } = useAppSelector(state => state.nuevaOrden);
+
+    const dispatch = useAppDispatch();
+
     return (
         <div>
             <Modal
@@ -46,6 +50,27 @@ export const ModalCrearOrden = () => {
                         >{`Estas por crear el siguiente pedido de envio... a travez de ${orden.tipoDeOrden}, por favor controla que este bien la información`}
 
                         </Typography>
+                        {
+                            !!orden.puntoOrigen && (
+                                <Box sx={{
+                                    marginTop: 2
+                                }}>
+        
+                                    <Typography id="transition-modal-title" variant="h6" component="h2" sx={{
+                                        color: 'inherit'
+                                    }}
+                                    >Retiramos desde:</Typography>
+                                    <Box sx={{
+                                        marginLeft: 10
+                                    }}>
+                                        <Typography id="transition-modal-title" variant="body1" component="p" sx={{
+                                            color: 'inherit'
+                                        }}
+                                        >DIRECCION: {`${orden.puntoOrigen.calle} - ${orden.puntoOrigen.numero} - ${orden.puntoOrigen.ciudad} - (${orden.puntoOrigen.infoAdicional})`}</Typography>
+                                    </Box>
+                                </Box>
+                            )
+                        }
                         <Box sx={{
                             marginTop: 2
                         }}>
@@ -73,7 +98,7 @@ export const ModalCrearOrden = () => {
                                 <Typography id="transition-modal-title" variant="body1" component="p" sx={{
                                     color: 'inherit'
                                 }}
-                                >DIRECCION: {`${orden.destinatario.direccion.calle} - ${orden.destinatario.direccion.numero} - ${orden.destinatario.direccion.ciudad}`}</Typography>
+                                >DIRECCION: {`${orden.destinatario.direccion.calle} - ${orden.destinatario.direccion.numero} - ${orden.destinatario.direccion.ciudad}- (${orden.destinatario.direccion.infoAdicional})`}</Typography>
                             </Box>
                         </Box>
                         <Box sx={{
@@ -108,7 +133,7 @@ export const ModalCrearOrden = () => {
                         }}
                         >Costo total: {orden.infoPaquete.costo}</Typography>
                         <Box sx={{
-                            position:'absolute',
+                            // position:'absolute',
                             display: 'flex',
                             justifyContent: 'end',
                             bottom: 10,
@@ -119,14 +144,16 @@ export const ModalCrearOrden = () => {
                                 fullWidth
                                 variant="outlined"
                                 sx={{ m: 1 }}
+                                onClick={() => { dispatch(resetNuevaOrden()) }}
                             >
-                                Atras
+                                Cancelar
                             </Button>
                             <Button
                                 type="button"
                                 fullWidth
                                 variant="contained"
                                 sx={{ m: 1 }}
+                                onClick={() => dispatch(startPostNuevaOrden())}
                             >
                                 Crear
                             </Button>
